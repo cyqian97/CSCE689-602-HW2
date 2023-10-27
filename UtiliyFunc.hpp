@@ -1,29 +1,35 @@
 #include <bitset>
 
-typedef std::bitset<1000> type_set;
+typedef std::bitset<1000> type_element;
 
 class UtiliyFunc
 {
 public:
-  type_set set_currnet;
-  int count_evaluate = 0;
+  type_element set_currnet;
+  int val = 0;
+  int set_size = 0;
+  int count_eval = 0;
 
   UtiliyFunc(){};
 
-  int add_element(type_set element_new)
+  int add_element(type_element element_new)
   {
     set_currnet |= element_new;
-    return set_currnet.count();
+    set_size++;
+    count_eval++;
+    val = set_currnet.count();
+    return val;
   }
 
-  int marginal_gain(type_set element_new)
+  int marginal_gain(type_element element_new)
   {
-    count_evaluate++;
-    return (set_currnet & element_new).count();
+    count_eval++;
+    return (set_currnet | element_new).count() - val;
   }
 
-  int value()
-  {
-    return set_currnet.count();
-  }
+  int value() { return val; }
+  
+  int size() { return set_size; }
+
+  int num_eval() { return count_eval; }
 };
