@@ -1,6 +1,6 @@
 #include "Algorithms.hpp"
 
-int StandardGreedy(std::ifstream &inputFile, int k)
+int StandardGreedy(std::ifstream &inputFile, int k, int & num_eval)
 {
     std::list<type_element> set_ground;
 
@@ -29,11 +29,15 @@ int StandardGreedy(std::ifstream &inputFile, int k)
         set_ground.erase(it_max_element);
     }
 
+    num_eval = f.num_eval();
+
     return f.value();
 }
 
-int StreamGreedy(std::ifstream &inputFile, int k, double eps)
+int StreamGreedy(std::ifstream &inputFile, int k, double eps, int & num_eval)
 {
+    num_eval = 0;
+
     // Initialize all threads with the first element
     std::list<int> list_est_order;
     std::list<UtiliyFunc> list_sets;
@@ -69,6 +73,7 @@ int StreamGreedy(std::ifstream &inputFile, int k, double eps)
             // Discard thread with orders two small
             for (int i = list_est_order.front(); i < lb; i++)
             {
+                num_eval += list_sets.front().num_eval();
                 list_est_order.pop_front();
                 list_sets.pop_front();
             }
@@ -120,6 +125,7 @@ int StreamGreedy(std::ifstream &inputFile, int k, double eps)
     int max_value = 0;
     for (auto &s : list_sets)
     {
+        num_eval += s.num_eval();
         max_value = std::max(max_value, s.value());
     }
     return max_value;

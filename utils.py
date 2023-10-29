@@ -43,4 +43,6 @@ if __name__ == "__main__":
     ProcessRawData("datasets/corel16k/Corel16k005.arff", 500)
     ProcessRawData("datasets/corel16k/Corel16k006.arff", 500)
     ProcessRawData("datasets/corel16k/Corel16k007.arff", 500)
+    ProcessRawData("datasets/corel16k/Corel16k008.arff", 500)
+    ProcessRawData("datasets/corel16k/Corel16k009.arff", 500)
     ProcessRawData("datasets/delicious/delicious.arff", 500)

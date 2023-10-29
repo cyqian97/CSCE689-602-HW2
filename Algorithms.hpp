@@ -9,9 +9,9 @@
 #include <algorithm>
 #include "UtiliyFunc.hpp"
 
-int StandardGreedy(std::ifstream& inputFile, int k);
+int StandardGreedy(std::ifstream& inputFile, int k, int & num_eval);
 
-int StreamGreedy(std::ifstream& inputFile, int k, double eps);
+int StreamGreedy(std::ifstream& inputFile, int k, double eps, int & num_eval);
 
 int ReservoirSampling(std::ifstream& inputFile, int k);
 
