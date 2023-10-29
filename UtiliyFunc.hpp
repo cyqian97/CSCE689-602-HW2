@@ -27,6 +27,8 @@ public:
     return (set_currnet | element_new).count() - val;
   }
 
+  int singleton_value(type_element s) {return s.count(); } 
+
   int value() { return val; }
   
   int size() { return set_size; }
