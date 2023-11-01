@@ -26,27 +26,37 @@ for i, fname in enumerate(fnames):
                                     'o-', label="Seservoir Sampling")
     # axs[int(i/3),i%3].legend()
     axs[int(i/3), i % 3].set_title(fname.split('/')[1].split('_')[0])
+    if(int(i/3)==2):
+        axs[int(i/3), i % 3].set_xlabel('k')
+    if( i % 3==0):
+        axs[int(i/3), i % 3].set_ylabel('Function Value')
 
 
 plt.figlegend(handles=[l1, l2, l3],  loc="lower center",
-              bbox_to_anchor=(0.5, 0.), ncols=3)
+              bbox_to_anchor=(0.5, -0.002), ncols=3)
 fig.tight_layout()
 plt.subplots_adjust(bottom=0.1)
-plt.savefig('images/Fval Comparisons.svg')
+plt.savefig('images/Fval Comparisons.pdf')
 plt.show()
 
 ### Number of Evaluations Comparison
 fname = "results/delicious_filtered-k_results.txt"
 data = np.loadtxt(fname, dtype=int, delimiter=',')
-fig = plt.figure(figsize=(4,3))
-ax = plt.subplot(111)
-ax.plot(data[:12, 1],data[:12, 4],'s-', label="Standard Greedy")
-ax.plot(data[:16, 3],data[:16, 5],'v-', label="Streaming Greedy")
-ax.legend()
-ax.set_xlabel("Utility Function Value")
-ax.set_ylabel("# Function Evaluations")
+fig, axs = plt.subplots(1, 2, figsize=(8, 4))
+axs[0].plot(data[:,0],data[:, 4],'s-', label="Standard Greedy")
+axs[0].plot(data[:,0],data[:,  5],'v-', label="Streaming Greedy")
+axs[0].set_xlabel("k")
+axs[0].set_ylabel("# Function Evaluations")
+
+l1, =axs[1].plot(data[:12, 1],data[:12, 4],'s-', label="Standard Greedy")
+l2, =axs[1].plot(data[:16, 3],data[:16, 5],'v-', label="Streaming Greedy")
+axs[1].set_xlabel("Function Value")
+axs[1].set_ylabel("# Function Evaluations")
+plt.figlegend(handles=[l1, l2],  loc="lower center",
+              bbox_to_anchor=(0.5, -0.017), ncols=2)
 fig.tight_layout()
-plt.savefig('images/Neval Comparison.svg')
+plt.subplots_adjust(bottom=0.2)
+plt.savefig('images/Neval Comparison.pdf')
 plt.show()
 
 
@@ -57,7 +67,7 @@ fig, axs = plt.subplots(1, 2, figsize=(8, 4))
 axs[0].plot(data[:, 0], data[:, 1], '-', label="Standard Greedy")
 axs[0].plot(data[:, 0], data[:, 2], 'v-', label="Streaming Greedy")
 axs[0].set_xlabel("$\epsilon$")
-axs[0].set_ylabel("Utility Function Value")
+axs[0].set_ylabel("Function Value")
 
 l1, = axs[1].plot(data[:, 0], data[:, 3], '-', label="Standard Greedy")
 l2, = axs[1].plot(data[:, 0], data[:, 4], 'v-', label="Streaming Greedy")
@@ -65,8 +75,8 @@ axs[1].set_xlabel("$\epsilon$")
 axs[1].set_ylabel("# Function Evaluations")
 
 plt.figlegend(handles=[l1, l2],  loc="lower center",
-              bbox_to_anchor=(0.5, 0.), ncols=2)
+              bbox_to_anchor=(0.5, -0.017), ncols=2)
 fig.tight_layout()
 plt.subplots_adjust(bottom=0.2)
-plt.savefig('images/Eps Effect.svg')
+plt.savefig('images/Eps Effect.pdf')
 plt.show()

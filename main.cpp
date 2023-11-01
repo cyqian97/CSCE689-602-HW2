@@ -124,8 +124,8 @@ int main(int argc, char *argv[])
             int num_eval2;
             int res2 = StreamGreedy(inputFile, k, init_eps, num_eval2);
             std::cout << "2: " << res2 << compare(res2, res0 * (0.5 - init_eps)) << res0 << "*(1/2-eps=" << init_eps << ")\t"
-                      << "n_eval 0: " << num_eval0 << "\t1: " << num_eval2 << std::endl;
-            outputFile << k << ", " << res0 << ", " << res1 << ", " << res2 << ", " << num_eval0 << ", " << num_eval2 << std::endl;
+                      << "n_eval 0: " << num_eval0 << "\t1: " << num_eval2 << "\t" << (double)num_eval0 / num_eval2 << std::endl;
+            outputFile << k << ", " << res0 << ", " << res1 << ", " << res2 << ", " << num_eval0 << ", " << num_eval2 << ", " << (double)num_eval0 / num_eval2 << std::endl;
             inputFile.clear();
             inputFile.seekg(0);
         }
@@ -146,8 +146,9 @@ int main(int argc, char *argv[])
             std::cout << "esp: " << eps << "\t"
                       << "1: " << res0 << "\t"
                       << "2: " << res2 << "\t"
-                      << "n_eval 0: " << num_eval0 << "\t1: " << num_eval2 << std::endl;
-            outputFile << eps << ", " << res0 << ", " << res2 << ", " << num_eval0 << ", " << num_eval2 << std::endl;
+                      << "n_eval 0: " << num_eval0 << "\t1: " << num_eval2 << "\t"
+                      << (double)num_eval0 / num_eval2 << std::endl;
+            outputFile << eps << ", " << res0 << ", " << res2 << ", " << num_eval0 << ", " << num_eval2 << ", " << (double)num_eval0 / num_eval2 << std::endl;
             inputFile.clear();
             inputFile.seekg(0);
         }
