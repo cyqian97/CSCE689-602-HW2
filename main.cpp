@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
             init_eps = std::stod(argv[4]);
             end_eps = std::stod(argv[5]);
             step = std::stod(argv[6]);
-            std::cout << init_eps << ", " << end_eps << ", " << step << std::endl;
+            // std::cout << init_eps << ", " << end_eps << ", " << step << std::endl;
         }
     }
 
@@ -132,12 +132,10 @@ int main(int argc, char *argv[])
     }
     else if (strcmp(argv[2], "-e") == 0)
     {
-        std::cout << "k: " << init_k;
-
         // Standard greedy
         int num_eval0;
         int res0 = StandardGreedy(inputFile, init_k, num_eval0);
-        std::cout << "k: " << init_k << "\t0: " << res0 << "\t";
+        std::cout << "k: " << init_k << "\t0: " << res0 << std::endl;
         inputFile.clear();
         inputFile.seekg(0);
 
@@ -145,7 +143,7 @@ int main(int argc, char *argv[])
         {
             int num_eval2;
             int res2 = StreamGreedy(inputFile, init_k, eps, num_eval2);
-            std::cout << "esp: " << eps
+            std::cout << "esp: " << eps << "\t"
                       << "1: " << res0 << "\t"
                       << "2: " << res2 << "\t"
                       << "n_eval 0: " << num_eval0 << "\t1: " << num_eval2 << std::endl;
