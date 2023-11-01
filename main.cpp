@@ -26,9 +26,9 @@ int main(int argc, char *argv[])
 
     int init_k = 10;
     int end_k = 100;
-    double init_eps = 0;
+    double init_eps = 0.1;
     double end_eps = 0;
-    double step = 0;
+    double step = 5;
 
     if (argc == 7)
     {
